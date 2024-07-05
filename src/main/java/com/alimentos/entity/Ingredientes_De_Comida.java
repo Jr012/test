@@ -15,11 +15,11 @@ public class Ingredientes_De_Comida {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Ingredientes ingredientes;
+    private Ingredientes  ingredienteId;
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Comidas comidas;
+    private Comidas comidaId;
 
     public int getId() {
         return id;
@@ -37,29 +37,29 @@ public class Ingredientes_De_Comida {
         this.cantidad = cantidad;
     }
 
-    public Ingredientes getIngredientes() {
-        return ingredientes;
+    public Ingredientes getIngredienteId() {
+        return ingredienteId;
     }
 
-    public void setIngredientes(Ingredientes ingredientes) {
-        this.ingredientes = ingredientes;
+    public void setIngredienteId(Ingredientes ingredienteId) {
+        this.ingredienteId = ingredienteId;
     }
 
-    public Comidas getComidas() {
-        return comidas;
+    public Comidas getComidaId() {
+        return comidaId;
     }
 
-    public void setComidas(Comidas comidas) {
-        this.comidas = comidas;
+    public void setComidaId(Comidas comidaId) {
+        this.comidaId = comidaId;
     }
 
     public Ingredientes_De_Comida() {
     }
 
-    public Ingredientes_De_Comida(int id, double cantidad, Ingredientes ingredientes, Comidas comidas) {
+    public Ingredientes_De_Comida(int id, double cantidad, Ingredientes ingredienteId, Comidas comidaId) {
         this.id = id;
         this.cantidad = cantidad;
-        this.ingredientes = ingredientes;
-        this.comidas = comidas;
+        this.ingredienteId = ingredienteId;
+        this.comidaId = comidaId;
     }
 }

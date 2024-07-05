@@ -1,7 +1,8 @@
 package com.alimentos.controllers;
 
-import com.alimentos.entity.Categoria;
-import com.alimentos.service.CategoriaService;
+
+import com.alimentos.entity.Ingredientes;
+import com.alimentos.service.IngredientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "alimentos/categorias")
-public class CategoriaController {
+@RequestMapping(path = "alimentos/ingredientes")
+public class IngredientesController {
     @Autowired
-    CategoriaService categoriaService;
+    IngredientesService ingredientesService;
 
     @GetMapping
-    public List<Categoria> obtenerTodasCategorias(){
-        return categoriaService.getCategorias();
+    public List<Ingredientes> obtenerTodosingredientes(){
+        return ingredientesService.getIngredientes();
     }
-
 
 }
