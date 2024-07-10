@@ -15,7 +15,7 @@ public class Comidas {
     @Column(nullable = false)
     private String receta;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(nullable = false)
     private Categoria categoria;
 

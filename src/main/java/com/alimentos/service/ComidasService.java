@@ -18,6 +18,7 @@ public class ComidasService {
 
     @Autowired
     ComidasRepository comidasRepository;
+    @Autowired
     IngredientesDeComidaRepository ingredientesDeComidaRepository;
 
     public List<Comidas> getComidas(){
@@ -32,30 +33,31 @@ public class ComidasService {
 
     public void saveUp(ComidasDTO comida){
         Comidas comidasEntity = new Comidas();
+        comidasEntity.setId(comida.getId());
         comidasEntity.setNombre(comida.getNombre());
         comidasEntity.setReceta(comida.getReceta());
         comidasEntity.setCategoria(comida.getCategoria());
         Comidas comidaCreada = comidasRepository.save(comidasEntity);
-
+        if (comida.getId() > 0) borrarIngredientesComida(comida.getId());
         List<IngredienteDTO> ingredientes = comida.getIngredientes();
         for (IngredienteDTO ingrediente : ingredientes) {
             Ingredientes_De_Comida ingredientes_De_Comida = new Ingredientes_De_Comida();
             Ingredientes ingredienteEntity = new Ingredientes();
             ingredienteEntity.setId(ingrediente.getIngredienteId());
-
             ingredientes_De_Comida.setIngredienteId(ingredienteEntity);
-
-            Comidas comidasEnti = new Comidas();
-            comidasEnti.setId(comidaCreada.getId());
-            ingredientes_De_Comida.setComidaId(comidasEnti);
-
+            ingredientes_De_Comida.setComidaId(comidaCreada);
             ingredientes_De_Comida.setCantidad(ingrediente.getCantidad());
 
             ingredientesDeComidaRepository.save(ingredientes_De_Comida);
         }
 
     }
-
+    private void borrarIngredientesComida(int id){
+        List<Ingredientes_De_Comida> ingredientes= ingredientesDeComidaRepository.buscaPorComida(id);
+        for(Ingredientes_De_Comida ingrediente: ingredientes ){
+            ingredientesDeComidaRepository.deleteById(ingrediente.getId());
+        }
+    }
 
 
     public void deleteIdComida(int id){

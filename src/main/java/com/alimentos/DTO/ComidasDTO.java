@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComidasDTO {
+    private int id;
     private String nombre;
     private String receta;
     private Categoria categoria;
@@ -48,5 +49,11 @@ public class ComidasDTO {
         this.ingredientes = ingredientes;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }
